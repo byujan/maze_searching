@@ -1,5 +1,7 @@
+#Continuing Education - State Space Searching
+#Answers written by Peter Jang
+
 import numpy as np
-import sys
 
 class Maze:
     def __init__(self, size, walls):
@@ -45,16 +47,12 @@ class State:
         children = []
         moves = [(0,1), (1,0), (-1,0), (0,-1)]
         for move in moves:
-            #print(move)
             xpos, ypos = self.pos
             xmove, ymove = move
             newpos = (xpos+xmove, ypos+ymove)
-            #print(newpos)
             if self.isValid(move):
-                #print(newpos)
                 newState = State(self, newpos, move, self.maze)
                 children.append(newState)
-        #print(children)
         return children
 
     def get_direction(self, move):
@@ -92,11 +90,8 @@ def BreadthFirstSearch(initial_state, goal):
     explored_states = set()
     while frontier:
         state = frontier.pop(0)
-        #print(state)
         if state.pos not in explored_states:
             explored_states.add(state.pos)
-            #state.get_children()
-            #sys.exit(0)
             children = state.get_children()
             for child in children:
                 frontier.append(child)
@@ -109,11 +104,10 @@ def main():
     size = (5,5)
     walls = [(1,1), (2,1), (2,2), (3,2), (0,3)]
     newMaze = Maze(size, walls)
+    print(newMaze.maze)
     init_state = State(None, (0,0), None, newMaze)
-    path = BreadthFirstSearch(init_state, (4,4))
+    path = BreadthFirstSearch(init_state, (0,4))
     print(path)
-    #newMaze.put_answer(path)
-    #print(newMaze)
 
 if __name__ == "__main__":
     main()
