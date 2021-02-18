@@ -2,7 +2,7 @@
 #Tests written by Peter Jang
 
 import unittest
-from answers import Maze, State, BreadthFirstSearch
+from statespace_searching import Maze, State, BreadthFirstSearch
 import numpy as np
 
 class TestMaze(unittest.TestCase):
